@@ -1,0 +1,16 @@
+# Core numerics / imaging / UI
+numpy>=2.0
+pillow>=10.0
+matplotlib>=3.7
+
+# Hugging Face model hub client (auth + downloads)
+huggingface_hub>=0.34
+
+# PyTorch. On macOS (Apple Silicon / MPS) and CPU, plain pip works.
+# For NVIDIA CUDA, install the matching build from https://pytorch.org instead.
+torch>=2.5
+
+# SAM3 support currently ships in transformers `main` (a dev build), not yet in
+# a stable PyPI release. Tested with 5.13.0.dev0. Installing from source pulls a
+# version that includes the sam3 model:
+transformers @ git+https://github.com/huggingface/transformers.git
