@@ -12,8 +12,11 @@ You might need to apply for access to SAM3 [here](https://huggingface.co/faceboo
 
 SAM3 is an exemplar segmentation model, which means that you draw boxes around examples of positives, and then it identifies similar objects based on the exemplar.
 
-Run: cd ../"Meta Sam3"
+Run:
+```
+cd ./"Meta Sam3"
 .venv/bin/python SAM3.py --image "/path/to/your_image.jpg"
+```
 
 ## Just Image Processing
 Download the "Image Processor" folder.
