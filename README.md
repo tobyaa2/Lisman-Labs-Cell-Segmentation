@@ -13,8 +13,8 @@ Run: cd ../"Meta Sam3"
 Run: 
 
 python3 -m cell_counter.cli run \
-    --filtered   "Example Images/c1_Filtered.png" \
-    --unfiltered "Example Images/c1_Unfiltered.jpg" \
+    --filtered   "Path to filtered/filtered_image.jpg" \
+    --unfiltered "Path to unfiltered/unfiltered_image.jpg" \
     --out        results/c1 \
     --save-overlay --save-csv
 
