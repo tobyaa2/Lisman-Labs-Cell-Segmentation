@@ -16,13 +16,13 @@ Run: cd ../"Meta Sam3"
 ## Just Image Processing
 Run: 
 
-'''
+```
 python3 -m cell_counter.cli run \
     --filtered   "Path to filtered/filtered_image.jpg" \
     --unfiltered "Path to unfiltered/unfiltered_image.jpg" \
     --out        results/"Image Folder" \
     --save-overlay --save-csv
-'''
+```
 
 For image processing, you must provide a filtered and unfiltered version of an image. I used [Cellpose](https://github.com/mouseland/cellpose) for the filtering.
 
@@ -41,13 +41,13 @@ Install everything from the Meta Sam3 and Image processing Steps.
 
 Run:
 
-'''
+```
 python3 -m cell_counter.cli run \
     --filtered   "Path to filtered/filtered_image.jpg" \
     --unfiltered "Path to unfiltered/unfiltered_image.jpg" \
     --auto-exemplars \
     --out        results/"Image Folder" \
     --save-overlay --save-csv
-'''
+```
 
 Read the SAM3 README for instructions on using manual exemplars in the Image Processor.
