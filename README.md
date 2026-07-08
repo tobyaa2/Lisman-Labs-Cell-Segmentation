@@ -6,6 +6,8 @@ There are 2 parts to this Git, the Image Processor, and the SAM3 model. They can
 ## Just SAM3
 Follow the README.md in the "Meta SAM3" folder and install the SAM3 model.
 
+You might need to apply for access to SAM3 [here](https://huggingface.co/facebook/sam3), then provide an API key from Hugging Face.
+
 Run: cd ../"Meta Sam3"
 .venv/bin/python SAM3.py --image "/path/to/your_image.jpg"
 
