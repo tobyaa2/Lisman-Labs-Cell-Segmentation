@@ -41,7 +41,7 @@ To save a filtered image from Cellpose:
 - Go to File > Save Displayed RGB Image as png
 
 ## Both
-Install everything from the Meta Sam3 and Image processing Steps.
+Install everything from the Meta SAM3 and Image Processor Steps.
 
 Run:
 
