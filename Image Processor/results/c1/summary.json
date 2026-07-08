@@ -1,0 +1,117 @@
+{
+  "total_cells": 295,
+  "stained_cells": 193,
+  "unstained_cells": 102,
+  "percent_stained": 65.4,
+  "qc": {
+    "possible_doublets": 19,
+    "median_cell_area_px": 3898,
+    "mean_cell_area_px": 3998.7,
+    "border_cells": 8,
+    "debris_flagged": 25,
+    "foreground_fraction": 0.1405,
+    "field_background_bgr": [
+      96,
+      137,
+      152
+    ],
+    "field_blue_minus_red": -56.0,
+    "stain_method": "sam3",
+    "stain_threshold_used": 0.45,
+    "classifier_fallback_used": false,
+    "alignment": {
+      "aligned": true,
+      "method": "phase_corr_check",
+      "residual_px": 1.07,
+      "dx": -0.41,
+      "dy": -0.98,
+      "warped": false
+    },
+    "doublet_corrected_total": 316,
+    "count_robustness_band": null,
+    "sam3": {
+      "used": true,
+      "exemplar_source": "auto",
+      "detect_instances": 151,
+      "stain_instances": 23,
+      "recovered_cells": 12,
+      "fallback_reason": null
+    }
+  },
+  "warnings": [],
+  "image_id": "c1",
+  "parameters": {
+    "segmentation": {
+      "expected_cell_diameter_px": 70.0,
+      "blur_sigma": 2.0,
+      "dist_blur_sigma": 2.0,
+      "peak_rel_thresh": 0.3,
+      "doublet_factor": 1.8,
+      "split_touching": true,
+      "otsu_factor": 1.0,
+      "closing_kernel": 101,
+      "open_kernel": 5,
+      "close_kernel": 7,
+      "min_distance": 18,
+      "min_cell_area": 250,
+      "closing_factor": 1.44,
+      "min_distance_factor": 0.26,
+      "min_area_factor": 0.065
+    },
+    "classification": {
+      "method": "sam3",
+      "stain_threshold": 0.01,
+      "core_erosion": 2,
+      "field_dilation": 15,
+      "teal_hue_lo": 40,
+      "teal_hue_hi": 110,
+      "teal_sat_floor": 20,
+      "dark_teal_value_max": 90,
+      "dark_teal_bmr_min": 8,
+      "ambiguous_margin": 0.05,
+      "emit_ambiguous": false,
+      "min_solidity": 0.7,
+      "max_eccentricity": 0.97,
+      "exclude_debris": false
+    },
+    "registration": {
+      "enabled": true,
+      "downscale": 0.25,
+      "max_offset_frac": 0.01,
+      "residual_warn_px": 5.0,
+      "min_response": 0.03,
+      "method": "auto"
+    },
+    "output": {
+      "save_overlay": true,
+      "save_csv": true,
+      "save_debug": false,
+      "save_histograms": false,
+      "count_border_cells": true,
+      "csv_float_decimals": 3,
+      "number_cells": true,
+      "cell_label_scale": 1.0
+    },
+    "sam3": {
+      "enabled": true,
+      "python_path": "/Volumes/USBDevice/Lisman Labs/Meta SAM3/.venv/bin/python",
+      "meta_dir": "/Volumes/USBDevice/Lisman Labs/Meta SAM3",
+      "model_id": "facebook/sam3",
+      "exemplar_file": "",
+      "auto_exemplars": true,
+      "auto_cell_count": 6,
+      "auto_stain_pos": 6,
+      "auto_stain_neg": 5,
+      "exemplar_box_factor": 0.6,
+      "score_threshold": 0.3,
+      "mask_threshold": 0.5,
+      "detect_on": "filtered",
+      "detection_iou_new": 0.15,
+      "stain_score_threshold": 0.45,
+      "require": false,
+      "timeout_s": 1200
+    },
+    "version": "0.1.0"
+  },
+  "version": "0.1.0"
+}

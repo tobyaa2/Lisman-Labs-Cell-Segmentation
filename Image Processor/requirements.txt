@@ -1,0 +1,9 @@
+numpy>=1.24
+opencv-python>=4.7
+scikit-image>=0.21
+scipy>=1.10
+pandas>=2.0
+pyyaml>=6.0
+# optional: enables the unsupervised (GMM) stain classifier and feature histograms
+scikit-learn>=1.2
+matplotlib>=3.6

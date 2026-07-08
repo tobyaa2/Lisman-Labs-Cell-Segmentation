@@ -1,0 +1,88 @@
+# Default parameters for the cell-counting pipeline.
+#
+# Every value here is the dataclass default and is documented in
+# cell_counter/config.py. On the c1 pair these defaults give total ~283 (band
+# ~270-295) and stained ~197 ("any visible teal -> stained", stain_threshold=0.01).
+#
+# The single most important knob is segmentation.expected_cell_diameter_px:
+# changing it rescales the closing kernel, seed distance, and min cell area. Any
+# field set to `null` is derived from the diameter at load time.
+
+segmentation:
+  expected_cell_diameter_px: 70.0   # MASTER KNOB — rescales everything below
+  blur_sigma: 2.0                   # Gaussian pre-blur on the blue channel
+  dist_blur_sigma: 2.0              # smoothing of the distance transform
+  peak_rel_thresh: 0.30             # seed threshold as a fraction of max distance
+  doublet_factor: 1.8               # area > factor * median  -> possible doublet
+  split_touching: true              # watershed-split touching cells (false = no split)
+  otsu_factor: 1.0                  # detection sensitivity: threshold = otsu_factor x Otsu.
+                                    # <1 catches fainter cells (more false positives); the
+                                    # field is faint, so below ~0.5 floods. See README.
+  closing_kernel: null              # null -> ~1.44 x diameter (101 @ d=70), forced odd
+  open_kernel: 5                    # speck removal kernel
+  close_kernel: 7                   # pinhole fill kernel
+  min_distance: null                # null -> ~0.26 x diameter (18 @ d=70)
+  min_cell_area: null               # null -> ~0.065 x disc area (250 @ d=70)
+  closing_factor: 1.44
+  min_distance_factor: 0.26
+  min_area_factor: 0.065
+
+classification:
+  method: threshold                 # "threshold" (A, default) or "gmm" (B, unsupervised)
+  stain_threshold: 0.01             # teal_fraction cutoff for method A. "Any visible
+                                    # teal -> stained": a low floor just above
+                                    # single-pixel/neighbor-bleed noise. Raise to
+                                    # require a stronger stain; lower toward 0 for max
+                                    # sensitivity.
+  core_erosion: 2                   # px eroded off each cell mask to form its "core"
+  field_dilation: 15                # px the cell set is grown to define field background
+  teal_hue_lo: 40                   # OpenCV HSV hue window for the teal precipitate
+  teal_hue_hi: 110
+  teal_sat_floor: 20                # min saturation for a "teal" pixel (low -> catch faint teal)
+  dark_teal_value_max: 90           # also count dark, blue-leaning pixels as teal (dark
+  dark_teal_bmr_min: 8              # teal reads as low-saturation); 0 disables this catch
+  ambiguous_margin: 0.05            # |teal_fraction - threshold| < margin -> borderline
+  emit_ambiguous: false             # tag borderline cells in the CSV
+  min_solidity: 0.70                # below this -> is_debris (filaments/scratches)
+  max_eccentricity: 0.97            # above this -> is_debris
+  exclude_debris: false             # debris is always flagged; exclude from counts only if true
+
+registration:
+  enabled: true
+  downscale: 0.25                   # scale for the cheap alignment check
+  max_offset_frac: 0.01             # |offset|/dim above which we register
+  residual_warn_px: 5.0             # warn loudly above this residual
+  method: auto                      # auto | phase | ecc | orb | none
+
+output:
+  save_overlay: true
+  save_csv: true
+  save_debug: false
+  save_histograms: false
+  count_border_cells: true          # set false for the stereology convention
+  csv_float_decimals: 3
+  number_cells: true                # print each cell's CSV id on the overlay
+  cell_label_scale: 1.0             # multiplier on the auto cell-id font size
+
+# SAM3 exemplar-segmentation backend (optional; heavy; runs in its own venv).
+# Engaged only when classification.method == "sam3" AND an exemplar_file is given
+# (pass --exemplars to make "sam3" the effective default). Otherwise ignored and
+# the pipeline uses the classical color path. See README "SAM3".
+sam3:
+  enabled: true
+  python_path: ""                   # "" -> auto-detect the Meta SAM3 venv python
+  meta_dir: ""                      # "" -> auto-detect (default Meta SAM3 install)
+  model_id: facebook/sam3
+  exemplar_file: ""                 # per-image exemplar JSON; "" -> use auto or fall back
+  auto_exemplars: false             # true -> bootstrap exemplars from the color pass (no boxing)
+  auto_cell_count: 6                # # size-diverse cell exemplars (detection)
+  auto_stain_pos: 6                 # # clearly-teal positive stain exemplars
+  auto_stain_neg: 5                 # # clearly-cream negative stain exemplars
+  exemplar_box_factor: 0.6          # exemplar box half-width as a fraction of cell diameter
+  score_threshold: 0.3              # keep SAM3 instances with score >= this
+  mask_threshold: 0.5               # binarize SAM3 soft masks at this
+  detect_on: filtered               # run the "cell" detection concept on filtered | unfiltered
+  detection_iou_new: 0.15           # a SAM3 cell is NEW if overlap with existing < this
+  stain_score_threshold: 0.45       # SAM3 stain score >= this -> stained (0.5 ~ 93% precise)
+  require: false                    # true -> hard error (exit 4) if SAM3 unavailable
+  timeout_s: 1200
