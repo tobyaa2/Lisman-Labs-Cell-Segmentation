@@ -15,14 +15,30 @@ Run:
 python3 -m cell_counter.cli run \
     --filtered   "Path to filtered/filtered_image.jpg" \
     --unfiltered "Path to unfiltered/unfiltered_image.jpg" \
-    --out        results/c1 \
+    --out        results/"Image Folder" \
     --save-overlay --save-csv
 
 For image processing, you must provide a filtered and unfiltered version of an image. I used Cellpose for the filtering: https://github.com/mouseland/cellpose
 
-Specifically, I used a modified version that allows you to save the filtered image. You can find the modified version here: https://drive.google.com/file/d/14XQAlQviPAPvP7Yb0W-7iM7N2DiFz53v/view?usp=sharing
+Specifically, I used a modified version that allows you to save the filtered image.
+- To install, download the modified version of Cellpose from here: https://drive.google.com/file/d/14XQAlQviPAPvP7Yb0W-7iM7N2DiFz53v/view?usp=sharing
+- Follow the install instructions for your OS.
+
 
 To save a filtered image from Cellpose:
-- Run: "../cellpose/bin/python" -m cellpose
-- 
+- Run Cellpose
+- In the Views window, change RGB to blue=B
+- Go to File > Save Displayed RGB Image as png
+
+## Both
+Install everything from the Meta Sam3 and Image processing Steps.
+
+Run:
+
+python3 -m cell_counter.cli run \
+    --filtered   "Path to filtered/filtered_image.jpg" \
+    --unfiltered "Path to unfiltered/unfiltered_image.jpg" \
+    --auto-exemplars \
+    --out        results/"Image Folder" \
+    --save-overlay --save-csv
 
