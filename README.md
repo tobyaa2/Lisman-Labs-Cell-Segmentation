@@ -8,6 +8,8 @@ Follow the README.md in the "Meta SAM3" folder and install the SAM3 model.
 
 You might need to apply for access to SAM3 [here](https://huggingface.co/facebook/sam3), then provide an API key from Hugging Face once you gain access. 
 
+SAM3 is an exemplar segmentation model, which means that you draw boxes around examples of positives, and then it identifies similar objects based on the exemplar.
+
 Run: cd ../"Meta Sam3"
 .venv/bin/python SAM3.py --image "/path/to/your_image.jpg"
 
@@ -44,3 +46,4 @@ python3 -m cell_counter.cli run \
     --out        results/"Image Folder" \
     --save-overlay --save-csv
 
+Read the SAM3 README for instructions on using manual exemplars in the Image Processor.
