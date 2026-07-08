@@ -18,10 +18,10 @@ python3 -m cell_counter.cli run \
     --out        results/"Image Folder" \
     --save-overlay --save-csv
 
-For image processing, you must provide a filtered and unfiltered version of an image. I used Cellpose for the filtering: https://github.com/mouseland/cellpose
+For image processing, you must provide a filtered and unfiltered version of an image. I used [Cellpose](https://github.com/mouseland/cellpose) for the filtering.
 
 Specifically, I used a modified version that allows you to save the filtered image.
-- To install, download the modified version of Cellpose from here: https://drive.google.com/file/d/14XQAlQviPAPvP7Yb0W-7iM7N2DiFz53v/view?usp=sharing
+- To install, download the modified version of Cellpose from [here](https://drive.google.com/file/d/1ktbT0AoZoflsC5j2ep9SAMwKxFNQc2Q-/view?usp=sharing)
 - Follow the install instructions for your OS.
 
 
