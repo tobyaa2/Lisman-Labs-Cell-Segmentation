@@ -7,7 +7,7 @@ There are 2 parts to this Git, the Image Processor, and the SAM3 model. They can
 Follow the README.md in the "Meta SAM3" folder and install the SAM3 model.
 
 Run: cd ../"Meta Sam3"
-.venv/bin/python Sam3.py --image "/path/to/your_image.jpg"
+.venv/bin/python SAM3.py --image "/path/to/your_image.jpg"
 
 ## Just Image Processing
 Run: 
